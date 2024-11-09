@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Opensurv
+Comment=Start Opensurv
+Exec=/home/opensurv/bin/opensurv
+Type=Application
