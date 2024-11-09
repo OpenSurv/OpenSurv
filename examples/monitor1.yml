@@ -1,0 +1,26 @@
+#THIS IS A YAML FILE, INDENTATION IS IMPORTANT. ALSO DO NOT USE TABS FOR INDENTATION, BUT USE SPACES
+#Note2 demo is with image urls but you can do the same with camera streams or any other streams Opensurv supports,
+#You can also mixed types of streams on one screen
+
+#This is an demo how to configure demo layout 1 on a monitor with resolution 1920x1080
+essentials:
+  screens:
+    - camera_streams:
+        - url: "https://images.opensurv.net/demo.png"
+          imageurl: true
+          force_coordinates: [600, 0, 1920, 800]
+        - url: "https://images.opensurv.net/demo.png"
+          imageurl: true
+          force_coordinates: [0, 0, 600, 400]
+        - url: "https://images.opensurv.net/demo.png"
+          imageurl: true
+          force_coordinates: [0, 400, 600, 800]
+        - url: "https://images.opensurv.net/demo.png"
+          imageurl: true
+          force_coordinates: [0, 800, 600, 1080]
+        - url: "https://images.opensurv.net/demo.png"
+          imageurl: true
+          force_coordinates: [600, 800, 1260, 1080]
+        - url: "https://images.opensurv.net/demo.png"
+          imageurl: true
+          force_coordinates: [1260, 800, 1920, 1080]
