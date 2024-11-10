@@ -2,18 +2,19 @@
 
 ## What is Opensurv?
 
-Opensurv is a free application that transforms your [verified device](#Verified-hardware-list) into a dedicated device to monitor video streams or images.  
+Opensurv is a free application that transforms your [verified device](#Fully-functional-and-verified) into a dedicated device to monitor video streams or images.  
 
 ![Screenshot](examples/4streams.png)
 
-## Verified hardware list
+## Hardware list
 This list contains known working hardware/software combinations.  
 If you successfully tested hardware not on the list yet, then please add it to the list or make a GitHub issue about it.
-### Fully functional:
+### Fully functional and verified:
 | Hardware               | CPU/GPU                   | Arch    | OS               | Notes                                                                                                                                                                                                                                   |
 |------------------------|---------------------------|---------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ASUS ExpertCenter PN42 | Intel N100                | x86_64  | Ubuntu 24.04 LTS | - VESA mountable in the box <br /> - Passive cooling <br /> - Low power (~10Watt) <br /> - Powerful, can render more streams at the same time than a Rpi5                                                                               |
-### Testing in progress:
+
+### Hardware in test ( NOT considered functional at this time ):
 | Hardware               | CPU/GPU                   | Arch    | OS               | Notes                                                                                                                                                                                                                                   |
 |------------------------|---------------------------|---------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Raspberry Pi 5 2GB     | Cortex A76/Video Core VII | arm64   | Ubuntu 24.04 LTS | - VESA mountable with extra accessoires <br /> - Passive cooling <br /> - Low power (~10Watt) <br /> - More details [here](https://github.com/OpenSurv/opensurv/discussions/3) |  
@@ -40,10 +41,10 @@ If you successfully tested hardware not on the list yet, then please add it to t
 - Opensurv will auto-detect if a second monitor is connected at boot and will automatically start the configured screens for the second monitor.
 
 ## How to get started
-In short: The idea is to connect your [verified device](#Verified-hardware-list) to a monitor and tell Opensurv which stream(s) and screen(s) it should monitor or cycle between. Opensurv will auto-calculate all the rest.
+In short: The idea is to connect your [verified device](#Fully-functional-and-verified) to a monitor and tell Opensurv which stream(s) and screen(s) it should monitor or cycle between. Opensurv will auto-calculate all the rest.
 - Get a monitor or a TV (or 2)
-- Get a [verified device](#Verified-hardware-list) dedicated for Opensurv
-- Install a verified [operating system](#Verified-hardware-list) on the device
+- Get a [verified device](#Fully-functional-and-verified) dedicated for Opensurv
+- Install a verified [operating system](#Fully-functional-and-verified) on the device
 - On the freshly installed operating system, log in as a user and git clone this repository: 
   - `git clone https://github.com/opensurv/opensurv`
 - Move into the folder `cd opensurv`
