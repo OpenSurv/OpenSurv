@@ -4,4 +4,4 @@ export DISPLAY=:0
 # Start the XFCE window manager
 xfwm4 &
 #Xlib.display in surveillance.py requires DISPLAY var
-cd /home/opensurv/lib; python3 surveillance.py
+cd /home/opensurv/lib; python3 surveillance.py 2>&1

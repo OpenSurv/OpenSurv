@@ -94,7 +94,7 @@ class ScreenManager:
             logger.debug(f"ScreenManager: {self.name}: Force screen {requested_index + 1} requested")
 
             # Show loading screen
-            self.background_drawinstance.placeholder(0, 0, int(self.monitor["resolution"]["width"]),int(self.monitor["resolution"]["height"]), "images/loading.png")
+            self.background_drawinstance.placeholder(0, 0, int(self.monitor["resolution"]["width"]),int(self.monitor["resolution"]["height"]), "images/loading.png",self.all_screens[requested_index].get_rotate90())
             self.background_drawinstance.refresh()
             #Destroy current active and cached screens
             self.all_screens[self.activeindex].hide_all_streams()
@@ -149,7 +149,7 @@ class ScreenManager:
         #- Start a new cached offscreen screen
         logger.debug(f"ScreenManager: {self.name}: rotate_next: destroying previous active screen {self.all_screens[self.activeindex].name}")
         # Show loading screen
-        self.background_drawinstance.placeholder(0, 0, int(self.monitor["resolution"]["width"]), int(self.monitor["resolution"]["height"]), "images/loading.png")
+        self.background_drawinstance.placeholder(0, 0, int(self.monitor["resolution"]["width"]), int(self.monitor["resolution"]["height"]), "images/loading.png",self.all_screens[self.currentcacheindex].get_rotate90())
         self.background_drawinstance.refresh()
 
         self.all_screens[self.activeindex].hide_all_streams()
@@ -200,7 +200,7 @@ class ScreenManager:
             counter = counter + 1
 
         #Show a connecting screen on first run, so that in case of many streams = long initial startup, the user knows what is happening.
-        self.background_drawinstance.placeholder(0, 0, int(self.monitor["resolution"]["width"]), int(self.monitor["resolution"]["height"]), "images/connecting.png")
+        self.background_drawinstance.placeholder(0, 0, int(self.monitor["resolution"]["width"]), int(self.monitor["resolution"]["height"]), "images/connecting.png",self.all_screens[self.activeindex].get_rotate90())
         self.background_drawinstance.refresh()
 
     def get_disable_autorotation(self):

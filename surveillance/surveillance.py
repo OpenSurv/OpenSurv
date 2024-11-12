@@ -74,7 +74,7 @@ if __name__ == '__main__':
     #Setup logger
     logger = setup_logging()
 
-    fullversion_for_installer = "1.0"
+    fullversion_for_installer = "1.1beta1"
 
     version = fullversion_for_installer
     logger.info("Starting opensurv " + version)
@@ -105,30 +105,34 @@ if __name__ == '__main__':
         logger.debug(f"MAIN {screenmanager.name}: END bootstrap")
     loop_counter=0
     while True:
-        loop_counter += 1
+        try:
+            loop_counter += 1
 
-        #Handle keypresses
-        #Only the first screenmanager is the controller of pygame
-        handle_input(screenmanagers[0].get_background_drawinstance())
+            #Handle keypresses
+            #Only the first screenmanager is the controller of pygame
+            handle_input(screenmanagers[0].get_background_drawinstance())
 
-        #Check if we need to rotate:
-        for screenmanager in screenmanagers:
-            if not screenmanager.get_disable_autorotation():
-                if screenmanager.get_active_screen_run_time() >= screenmanager.get_active_screen_duration():
-                    screenmanager.rotate_next()
-                    #In case the screen in cache had disconnected or reconnectable streams, check and update it once it becomes active
-                    logger.debug(f"MAIN {screenmanager.name}: after rotate_next start update_active_screen")
+            #Check if we need to rotate:
+            for screenmanager in screenmanagers:
+                if not screenmanager.get_disable_autorotation():
+                    if screenmanager.get_active_screen_run_time() >= screenmanager.get_active_screen_duration():
+                        screenmanager.rotate_next()
+                        #In case the screen in cache had disconnected or reconnectable streams, check and update it once it becomes active
+                        logger.debug(f"MAIN {screenmanager.name}: after rotate_next start update_active_screen")
+                        screenmanager.update_active_screen()
+
+                #Only update the screen/check connectable cameras and repair every interval_check_status seconds
+                if loop_counter % int(interval_check_status) == 0:
+                    # Only try to redraw the screen when disable_probing_for_all_streams option is false, but keep the loop
+                    logger.debug(f"MAIN {screenmanager.name}: regular start update_active_screen (every " + str(interval_check_status) + " seconds since start of opensurv)")
                     screenmanager.update_active_screen()
+                    # Call the watchdogs to check and try to repair for crashed instances
+                    screenmanager.run_watchdogs_active_screen()
 
-            #Only update the screen/check connectable cameras and repair every interval_check_status seconds
-            if loop_counter % int(interval_check_status) == 0:
-                # Only try to redraw the screen when disable_probing_for_all_streams option is false, but keep the loop
-                logger.debug(f"MAIN {screenmanager.name}: regular start update_active_screen (every " + str(interval_check_status) + " seconds since start of opensurv)")
-                screenmanager.update_active_screen()
-                # Call the watchdogs to check and try to repair for crashed instances
-                screenmanager.run_watchdogs_active_screen()
+                #Reset focus pygame for keyhandling
+                screenmanager.focus_background_pygame()
 
-            #Reset focus pygame for keyhandling
-            screenmanager.focus_background_pygame()
-
-        time.sleep(1)
+            time.sleep(1)
+        except Exception as e:
+            logger.error(f"MAIN: crash { repr(e)}")
+            exit(99)

@@ -40,6 +40,9 @@ If you successfully tested hardware not on the list yet, then please add it to t
 ##### Dual monitor support
 - Opensurv will auto-detect if a second monitor is connected at boot and will automatically start the configured screens for the second monitor.
 
+##### Vertical monitor support
+- To display a screen vertically, set `rotate90: True` for that screen.
+
 ## How to get started
 In short: The idea is to connect your [verified device](#Fully-functional-and-verified) to a monitor and tell Opensurv which stream(s) and screen(s) it should monitor or cycle between. Opensurv will auto-calculate all the rest.
 - Get a monitor or a TV (or 2)

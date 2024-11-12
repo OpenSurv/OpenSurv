@@ -24,6 +24,7 @@ class Screen:
         self.hidden_state = True
         self.disable_probing_for_all_streams = screen_cfg.setdefault('disable_probing_for_all_streams', False)
         self.nr_of_columns = screen_cfg.setdefault('nr_of_columns', 2)
+        self.rotate90 = screen_cfg.setdefault('rotate90', False)
         self.name = screenname
         self.screen_cfg = screen_cfg
         self.streams_cfg = screen_cfg["streams"]
@@ -105,7 +106,7 @@ class Screen:
     def draw_all_placeholders(self):
         logger.debug(f"Screen: {self.name}: draw_all_placeholders")
         for i in self.placeholders_metadata:
-            self.background_drawinstance.placeholder(i['absposx'], i['absposy'], i['width'],i['height'],i['background_img_path'])
+            self.background_drawinstance.placeholder(i['absposx'], i['absposy'], i['width'],i['height'],i['background_img_path'],self.rotate90)
         self.background_drawinstance.refresh()
 
     def destroy(self):
@@ -124,6 +125,8 @@ class Screen:
         self.start_of_active_time = time.time()
         logger.debug(f"Screen: { self.name }: start_of_active_time: {str(self.start_of_active_time)}")
 
+    def get_rotate90(self):
+        return self.rotate90
     def get_active_run_time(self):
         '''Returns how long the screen is in active mode'''
         active_run_time = int(round((time.time() - self.start_of_active_time)))
@@ -163,7 +166,7 @@ class Screen:
             if fields == 0:
                 if not self.hidden_state:
                     #Draw no connectable placeholder but only is screen is not hidden
-                    self.background_drawinstance.placeholder(0, 0, self.resolution_width, self.resolution_height, "images/noconnectable.png")
+                    self.background_drawinstance.placeholder(0, 0, self.resolution_width, self.resolution_height, "images/noconnectable.png",self.rotate90)
                     self.previous_connectable_streams = self.connectable_streams
                 return
 
@@ -228,7 +231,7 @@ class Screen:
                                 "absposy": placeholder_y,
                                 "width": normal_fieldwidth,
                                 "height": normal_fieldheight,
-                                "background_img_path": "images/placeholder.png"
+                                "background_img_path": "images/placeholder.png",
                             })
                             count_placeholders = count_placeholders + 1
                             placeholder_x = placeholder_x + normal_fieldwidth
@@ -242,7 +245,7 @@ class Screen:
                 logger.debug(f"Screen: {self.name} Stop {stream.name}")
                 stream.stop_stream()
                 logger.debug(f"Screen: {self.name} Starting {stream.name}" )
-                stream.start_stream([x1,y1,x2,y2], self.hidden_state)
+                stream.start_stream([x1,y1,x2,y2], self.hidden_state,self.rotate90)
                 if not self.hidden_state:
                     self.draw_all_placeholders()
                 currentwindow = currentwindow + 1

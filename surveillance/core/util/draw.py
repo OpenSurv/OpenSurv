@@ -31,7 +31,7 @@ class Draw:
         logger.debug(
             f"Draw: {self.name} draw.init finished on DISPLAY {self.xdisplay_id}")
 
-    def placeholder(self,absposx,absposy,width,height,background_img_path):
+    def placeholder(self,absposx,absposy,width,height,background_img_path,rotate90):
         """This function creates a new placeholder"""
         if self.disable_pygame:
             logger.debug(f"Draw: {self.name} Refuse to create placeholder with coordinates: {absposx}, {absposy} and width: {width} height: {height} with image {background_img_path} since we do not have a pygame surface to draw on" )
@@ -39,6 +39,8 @@ class Draw:
         else:
             logger.debug(f"Draw: {self.name} Drawing placeholder with coordinates: {absposx}, {absposy} and width: {width} height: {height} with image {background_img_path}" )
             background_img = pygame.image.load(background_img_path)
+            if rotate90:
+                background_img = pygame.transform.rotate(background_img, -90)
             background_img = pygame.transform.scale(background_img, (width, height))
             self.surface.blit(background_img, (absposx, absposy))
             self.refresh()
