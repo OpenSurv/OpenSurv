@@ -142,7 +142,7 @@ essentials:
 #      #Defaults to 30
 #      duration: 30
 #
-#      #This setting rotates every stream of this screen 90 degrees, mostly used when monitors are physically rotated 90 degrees
+#      #This setting rotates this screen by 90 degrees, typically used when monitors are physically rotated to a vertical orientation.
 #      #If the colors appear washed out, you may need to combine this option with freeform_advanced_mpv_options: "--hwdec=no" for each stream where the colors are affected
 #      rotate90: True
 #
