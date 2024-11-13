@@ -2,7 +2,7 @@
 
 ## What is Opensurv?
 
-Opensurv is a free application that transforms your [verified device](#Fully-functional-and-verified) into a dedicated device to monitor video streams or images.  
+Opensurv is a free application that transforms your [compatible device](#Hardware-list) into a dedicated device to monitor video streams or images.  
 
 ![Screenshot](examples/4streams.png)
 
@@ -37,10 +37,10 @@ Explore the [hardware section of the discussion board](https://github.com/OpenSu
 - To display a screen vertically, set `rotate90: True` for that screen.
 
 ## How to get started
-In short: The idea is to connect your [verified device](#Fully-functional-and-verified) to a monitor and tell Opensurv which stream(s) and screen(s) it should monitor or cycle between. Opensurv will auto-calculate all the rest.
+In short: The idea is to connect your [compatible device](#Hardware-list) to a monitor and tell Opensurv which stream(s) and screen(s) it should monitor or cycle between. Opensurv will auto-calculate all the rest.
 - Get a monitor or a TV (or 2)
-- Get a [verified device](#Fully-functional-and-verified) dedicated for Opensurv
-- Install a verified [operating system](#Fully-functional-and-verified) on the device
+- Get a [compatible device](#Hardware-list) dedicated for Opensurv
+- Install a verified [operating system](#Hardware-list) on the device
 - On the freshly installed operating system, log in as a user and git clone this repository: 
   - `git clone https://github.com/opensurv/opensurv`
 - Move into the folder `cd opensurv`
