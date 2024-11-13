@@ -7,17 +7,10 @@ Opensurv is a free application that transforms your [verified device](#Fully-fun
 ![Screenshot](examples/4streams.png)
 
 ## Hardware list
-This list contains known working hardware/software combinations.  
-If you successfully tested hardware not on the list yet, then please add it to the list or make a GitHub issue about it.
-### Fully functional and verified:
-| Hardware                              | CPU/GPU                   | Arch    | OS               | Notes                                                                                                                                                                                                                                   |
-|---------------------------------------|---------------------------|---------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ASUS ExpertCenter PN42(PN42-BBN100MV) | Intel N100                | x86_64  | Ubuntu 24.04 LTS | - VESA mountable in the box <br /> - Passive cooling <br /> - Low power (~10Watt) <br /> - Powerful, can render more streams at the same time than a Rpi5                                                                               |
+Explore the [hardware section of the discussion board](https://github.com/OpenSurv/opensurv/discussions/categories/hardware?discussions_q=is%3Aopen+label%3ACompatible+category%3AHardware) to discover how OpenSurv works on various hardware. 
 
-### Hardware in test ( NOT considered functional at this time ):
-| Hardware               | CPU/GPU                   | Arch    | OS               | Notes                                                                                                                                                                                                                                   |
-|------------------------|---------------------------|---------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Raspberry Pi 5 2GB     | Cortex A76/Video Core VII | arm64   | Ubuntu 24.04 LTS | - VESA mountable with extra accessoires <br /> - Passive cooling <br /> - Low power (~10Watt) <br /> - More details [here](https://github.com/OpenSurv/opensurv/discussions/3) |  
+- [Compatible hardware](https://github.com/OpenSurv/opensurv/discussions?discussions_q=is%3Aopen+label%3ACompatible)
+- [Hardware in test](https://github.com/OpenSurv/opensurv/discussions?discussions_q=is%3Aopen+label%3A%22Testing+phase%22)
 
 
 ## Features
