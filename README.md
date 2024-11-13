@@ -7,7 +7,7 @@ Opensurv is a free application that transforms your [compatible device](#Hardwar
 ![Screenshot](examples/4streams.png)
 
 ## Hardware list
-Explore the [hardware section of the discussion board](https://github.com/OpenSurv/opensurv/discussions/categories/hardware?discussions_q=is%3Aopen+label%3ACompatible+category%3AHardware) to discover how OpenSurv works on various hardware. 
+Explore the [hardware section of the discussion board](https://github.com/OpenSurv/opensurv/discussions/categories/hardware?discussions_q=) to discover how OpenSurv works on various hardware. 
 
 - [Compatible hardware](https://github.com/OpenSurv/opensurv/discussions?discussions_q=is%3Aopen+label%3ACompatible)
 - [Hardware in test](https://github.com/OpenSurv/opensurv/discussions?discussions_q=is%3Aopen+label%3A%22Testing+phase%22)
