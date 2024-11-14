@@ -44,7 +44,7 @@ In short: The idea is to connect your [compatible device](#Hardware-list) to a m
 - On the freshly installed operating system, log in as a user and git clone this repository: 
   - `git clone https://github.com/opensurv/opensurv`
 - Move into the folder `cd opensurv`
-- OPTIONAL: checkout a specific branch, for example `git checkout v4_latest`, if you want to override the default version on master
+- OPTIONAL: checkout a specific branch, for example `git checkout v1_latest`, if you want to override the default version
 - Run `sudo ./install.sh`
 - Enjoy the demo showcase
 
@@ -81,7 +81,7 @@ This is a remote location with a video stream. OpenSurv will do its best to moni
 
 ## How to update OpenSurv to new version <a name="how-to-update"></a>
 - `cd opensurv; git pull`
-- OPTIONAL: checkout a specific branch, for example `git checkout v4_latest`, if you want to override the default version on master
+- OPTIONAL: checkout a specific branch, for example `git checkout v1_latest`, if you want to override the default version
 - Run `sudo ./install.sh` (The installer will ask if you want to preserve your current config file)
 - `systemctl restart lightdm.service`
 
