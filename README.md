@@ -7,10 +7,10 @@ OpenSurv is a free application that transforms your [compatible device](#Hardwar
 ![Screenshot](examples/4streams.png)
 
 ## Hardware list
-Explore the [hardware section of the discussion board](https://github.com/OpenSurv/opensurv/discussions/categories/hardware?discussions_q=) to discover how OpenSurv works on various hardware.
+Explore the [hardware section of the discussion board](https://github.com/OpenSurv/OpenSurv/discussions/categories/hardware?discussions_q=) to discover how OpenSurv works on various hardware.
 
-- [Compatible hardware](https://github.com/OpenSurv/opensurv/discussions?discussions_q=is%3Aopen+label%3ACompatible)
-- [Hardware in test](https://github.com/OpenSurv/opensurv/discussions?discussions_q=is%3Aopen+label%3A%22Testing+phase%22)
+- [Compatible hardware](https://github.com/OpenSurv/OpenSurv/discussions?discussions_q=is%3Aopen+label%3ACompatible)
+- [Hardware in test](https://github.com/OpenSurv/OpenSurv/discussions?discussions_q=is%3Aopen+label%3A%22Testing+phase%22)
 
 
 ## Features
@@ -42,8 +42,8 @@ In short: The idea is to connect your [compatible device](#Hardware-list) to a m
 - Get a [compatible device](#Hardware-list) dedicated for OpenSurv
 - Install a verified [operating system](#Hardware-list) on the device
 - On the freshly installed operating system, log in as a user and git clone this repository: 
-  - `git clone https://github.com/opensurv/opensurv`
-- Move into the folder `cd opensurv`
+  - `git clone https://github.com/OpenSurv/OpenSurv`
+- Move into the folder `cd OpenSurv`
 - OPTIONAL: checkout a specific branch, for example `git checkout v1_latest`, if you want to override the default version
 - Run `sudo ./install.sh`
 - Enjoy the demo showcase
@@ -80,14 +80,14 @@ OpenSurv will autodetect interruptions and try to restore the stream.
 This is a remote location with a video stream. OpenSurv will do its best to monitor the stream, it will autodetect interruptions and try to restore the stream.
 
 ## How to update OpenSurv to new version <a name="how-to-update"></a>
-- `cd opensurv; git pull`
+- `cd OpenSurv; git pull`
 - OPTIONAL: checkout a specific branch, for example `git checkout v1_latest`, if you want to override the default version
 - Run `sudo ./install.sh` (The installer will ask if you want to preserve your current config file)
 - `systemctl restart lightdm.service`
 
 ## Release notes
 
-See [RELEASE_NOTES](https://github.com/opensurv/opensurv/releases)
+See [RELEASE_NOTES](https://github.com/OpenSurv/OpenSurv/releases)
 
 ## Placeholder images
 After installation, you may change the placeholder images to something you like.
@@ -131,5 +131,5 @@ In case of dual monitors, then the screens on both monitors will be controlled a
 
 ## MISC
 
-- Join the community on https://github.com/OpenSurv/opensurv/discussions.<br/>
-- Bug tracking https://github.com/OpenSurv/opensurv/issues.<br/>
+- Join the community on https://github.com/OpenSurv/OpenSurv/discussions.<br/>
+- Bug tracking https://github.com/OpenSurv/OpenSurv/issues.<br/>
