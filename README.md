@@ -1,13 +1,13 @@
-# Opensurv - Open Source Surveillance (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QPJU9K2KZ8D94" target="_blank" rel="nofollow"><img src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" alt="" /></a>)
+# OpenSurv - Open Source Surveillance (<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QPJU9K2KZ8D94" target="_blank" rel="nofollow"><img src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" alt="" /></a>)
 
-## What is Opensurv?
+## What is OpenSurv?
 
-Opensurv is a free application that transforms your [compatible device](#Hardware-list) into a dedicated device to monitor video streams or images.  
+OpenSurv is a free application that transforms your [compatible device](#Hardware-list) into a dedicated device to monitor video streams or images.  
 
 ![Screenshot](examples/4streams.png)
 
 ## Hardware list
-Explore the [hardware section of the discussion board](https://github.com/OpenSurv/opensurv/discussions/categories/hardware?discussions_q=) to discover how OpenSurv works on various hardware. 
+Explore the [hardware section of the discussion board](https://github.com/OpenSurv/opensurv/discussions/categories/hardware?discussions_q=) to discover how OpenSurv works on various hardware.
 
 - [Compatible hardware](https://github.com/OpenSurv/opensurv/discussions?discussions_q=is%3Aopen+label%3ACompatible)
 - [Hardware in test](https://github.com/OpenSurv/opensurv/discussions?discussions_q=is%3Aopen+label%3A%22Testing+phase%22)
@@ -17,7 +17,7 @@ Explore the [hardware section of the discussion board](https://github.com/OpenSu
 ##### Self-healing and health monitoring including watchdogs
 - Every stream will be monitored by an external watchdog process. If the stream gets killed somehow, the watchdog will try to restart the stream/process. This gives you a very robust surveillance screen.
 - Stream up/down detection and auto-repositioning of connectable streams on the screen layout. 
-  For example: if you stop a camera (or just stop the server on the camera), Opensurv will detect this and will recalculate/redraw the screen with the still available streams. The same is true if a previous unconnectable stream becomes connectable. All without any user interaction.
+  For example: if you stop a camera (or just stop the server on the camera), OpenSurv will detect this and will recalculate/redraw the screen with the still available streams. The same is true if a previous unconnectable stream becomes connectable. All without any user interaction.
 
 ##### Automatically position streams (no manual coordinates calculation needed)
 - Auto-calculate coordinates for every stream monitored.
@@ -31,23 +31,26 @@ Explore the [hardware section of the discussion board](https://github.com/OpenSu
 - You can also specify "image streams" to monitor images next to or instead of camera streams. The images will be auto-updated if they change remotely.
 
 ##### Dual monitor support
-- Opensurv will auto-detect if a second monitor is connected at boot and will automatically start the configured screens for the second monitor.
+- OpenSurv will auto-detect if a second monitor is connected at boot and will automatically start the configured screens for the second monitor.
+
+##### Vertical monitor support
+- To display a screen vertically, set `rotate90: True` for that screen.
 
 ## How to get started
-In short: The idea is to connect your [compatible device](#Hardware-list) to a monitor and tell Opensurv which stream(s) and screen(s) it should monitor or cycle between. Opensurv will auto-calculate all the rest.
+In short: The idea is to connect your [compatible device](#Hardware-list) to a monitor and tell OpenSurv which stream(s) and screen(s) it should monitor or cycle between. OpenSurv will auto-calculate all the rest.
 - Get a monitor or a TV (or 2)
-- Get a [compatible device](#Hardware-list) dedicated for Opensurv
+- Get a [compatible device](#Hardware-list) dedicated for OpenSurv
 - Install a verified [operating system](#Hardware-list) on the device
 - On the freshly installed operating system, log in as a user and git clone this repository: 
   - `git clone https://github.com/opensurv/opensurv`
 - Move into the folder `cd opensurv`
-- OPTIONAL: checkout a specific branch, for example `git checkout v4_latest`, if you want to override the default version on master
+- OPTIONAL: checkout a specific branch, for example `git checkout v1_latest`, if you want to override the default version
 - Run `sudo ./install.sh`
 - Enjoy the demo showcase
 
 ## Configuration
 
-Opensurv has the following config files
+OpenSurv has the following config files
 - `/etc/opensurv/general.yml` => General config, mostly not needed to touch this.
 - `/etc/opensurv/monitor1.yml`  => Define screens and streams used for the first monitor.
 - `/etc/opensurv/monitor2.yml`  => Define screens and streams used for the second monitor.
@@ -63,22 +66,22 @@ For full config explanation with all possible options, consult the config files 
 
 #### file://
 This is a path on disk; by default, a video file is expected. This video file will then be played in an endless loop.
-If used with imageurl: true, then an image file is expected. If the image changes on disk, then Opensurv will also reload the stream with the new image.
+If used with imageurl: true, then an image file is expected. If the image changes on disk, then OpenSurv will also reload the stream with the new image.
 
-TIP: If an external program rotates the images on disk, then Opensurv can thus be used as a frontend for a digital picture frame.
+TIP: If an external program rotates the images on disk, then OpenSurv can thus be used as a frontend for a digital picture frame.
 
 #### http:// and https://
 This is a remote location with a video file or video stream.
-If used with imageurl: true, then an image file is expected. If the remote image changes, then Opensurv will also reload the stream with the new image.
+If used with imageurl: true, then an image file is expected. If the remote image changes, then OpenSurv will also reload the stream with the new image.
 
-TIP: This can be used as part of a digital signage setup: several Opensurv clients can be steered centrally by changing the image(s) at the central location.
-Opensurv will autodetect interruptions and try to restore the stream.
+TIP: This can be used as part of a digital signage setup: several OpenSurv clients can be steered centrally by changing the image(s) at the central location.
+OpenSurv will autodetect interruptions and try to restore the stream.
 #### rtsp:// and rtmp://
-This is a remote location with a video stream. Opensurv will do its best to monitor the stream, it will autodetect interruptions and try to restore the stream.
+This is a remote location with a video stream. OpenSurv will do its best to monitor the stream, it will autodetect interruptions and try to restore the stream.
 
-## How to update Opensurv to new version <a name="how-to-update"></a>
+## How to update OpenSurv to new version <a name="how-to-update"></a>
 - `cd opensurv; git pull`
-- OPTIONAL: checkout a specific branch, for example `git checkout v4_latest`, if you want to override the default version on master
+- OPTIONAL: checkout a specific branch, for example `git checkout v1_latest`, if you want to override the default version
 - Run `sudo ./install.sh` (The installer will ask if you want to preserve your current config file)
 - `systemctl restart lightdm.service`
 
@@ -94,9 +97,9 @@ After installation, you may change the placeholder images to something you like.
 - /home/opensurv/lib/images/loading.png is shown full screen when loading the next screen in a cycle.
 - `systemctl restart lightdm.service`
 
-## Opensurv in operation
+## OpenSurv in operation
 
-If you used the install.sh script, you can configure your streams in /etc/opensurv. After editing the config files, you need to restart Opensurv (`systemctl restart lightdm.service`) for the changes to take effect.
+If you used the install.sh script, you can configure your streams in /etc/opensurv. After editing the config files, you need to restart OpenSurv (`systemctl restart lightdm.service`) for the changes to take effect.
 
 If you are connected via keyboard/keypad, you can force the next screen by pressing and holding n or space (or keypad "+") for some seconds in case multiple screens were defined (this takes longer depending on the number of unconnectable streams, and they thus need to wait for timeout; keep holding until the screen changes. Note, you can change probe_timeout per camera stream if needed).
 
@@ -109,11 +112,11 @@ In case of dual monitors, then the screens on both monitors will be controlled a
 
 ## Troubleshooting
 
-- I advise you to test your URLs in mpv (command line) first. It should work before attempting to use them in Opensurv.
+- I advise you to test your URLs in mpv (command line) first. It should work before attempting to use them in OpenSurv.
 
 - If you used the install.sh script, logs are created at /home/opensurv/logs/. You can use them for troubleshooting. Enable DEBUG logging for very detailed output of what is going on. Switch INFO to DEBUG in /etc/opensurvc/logging.yml and restart opensurv.
 
-- If you are connected via keyboard/keypad, you can stop Opensurv by pressing and holding q (or backspace or keypad "/") (this can take some seconds).
+- If you are connected via keyboard/keypad, you can stop OpenSurv by pressing and holding q (or backspace or keypad "/") (this can take some seconds).
 
 - To manage the screen without rebooting, use systemctl:
   - `sudo systemctl stop lightdm.service` to stop the screen.

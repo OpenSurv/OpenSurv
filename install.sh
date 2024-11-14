@@ -11,8 +11,6 @@ show_version() {
 
 configure_lightdm() {
   echo '[Seat:*]
-#Hide mouse cursor
-greeter-setup-script=/usr/bin/unclutter -idle 2 -root
 autologin-user=opensurv
 #autologin-session=xfce
 autologin-session=opensurv

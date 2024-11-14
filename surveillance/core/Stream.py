@@ -27,6 +27,7 @@ class Stream:
         self.background_drawinstance = background_drawinstance
         self.streamprocess = None
         self.mpv_extra_options = ""
+        self.mpv_video_rotate = 0
         #This option overrides any other coordinates passed to this stream
         self.force_coordinates=stream.setdefault("force_coordinates", False)
         self.freeform_advanced_mpv_options = stream.setdefault("freeform_advanced_mpv_options","")
@@ -170,7 +171,7 @@ class Stream:
     def show_status(self):
         if not self.hidden:
             self.calculate_field_geometry()
-            self.background_drawinstance.placeholder(self.coordinates[0], self.coordinates[1], self.normal_fieldwidth, self.normal_fieldheight, "images/connecting.png")
+            self.background_drawinstance.placeholder(self.coordinates[0], self.coordinates[1], self.normal_fieldwidth, self.normal_fieldheight, "images/connecting.png",self.rotate90)
 
 
     def hide(self):
@@ -198,7 +199,11 @@ class Stream:
         '''
         width = self.coordinates[2] - self.coordinates[0]
         height = self.coordinates[3] - self.coordinates[1]
-        return str(int(width)) + ':' + str(int(height))
+        if self.rotate90:
+            return str(int(height)) + ':' + str(int(width))
+        else:
+            return str(int(width)) + ':' + str(int(height))
+        fi
 
     def _convert_to_mpv_coordinates(self):
         """convert omxplayer like coordinates in the form of an array [x1,y1,x2,y2] to cvlc coordinates in the form of string <width>x<height>+<x upper right corner window>+<y upper right corner window>"""
@@ -252,7 +257,11 @@ class Stream:
           logger.debug(f"Stream: {self.name}: run_stream_watchdog: OK is responding ")
       else:
           logger.debug(f"Stream: {self.name}: run_stream_watchdog: was instructed to be stopped, not running watchdog")
-    def start_stream(self, coordinates, hidden):
+    def start_stream(self, coordinates, hidden, rotate90):
+        self.rotate90 = rotate90
+        if self.rotate90:
+            self.mpv_video_rotate=90
+
         self.hidden = hidden
         if self.force_coordinates:
             logger.debug(f"Stream: {self.name}: start_stream: uses force_coordinates { str(self.force_coordinates) } which will override pre-calculated coordinates of { str(coordinates) }")
@@ -274,7 +283,8 @@ class Stream:
                         {self.monitor_x_offset} \
                         {self.monitor_y_offset} \
                         {self.url} \
-                        {self.name}'
+                        {self.name } \
+                        {int(self.rotate90)}'
 
         else:
             self.command_line = f'/usr/bin/mpv \
@@ -283,6 +293,7 @@ class Stream:
                         --video-aspect-override=\'{self._get_aspect_ratio_from_coordinates()}\' \
                         --title=\'{self.name}\' \
                         --no-border \
+                        --video-rotate=\'{self.mpv_video_rotate}\' \
                         --window-minimized=yes \
                         --no-input-default-bindings \
                         --no-input-builtin-bindings \
@@ -317,7 +328,7 @@ class Stream:
 
     def restart_stream(self):
         self.stop_stream()
-        self.start_stream(self.coordinates, self.hidden)
+        self.start_stream(self.coordinates, self.hidden, self.rotate90)
 
     def stop_stream(self):
         logger.debug(f"Stream: {self.name}: stop_stream")

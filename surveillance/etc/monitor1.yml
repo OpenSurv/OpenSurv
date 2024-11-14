@@ -142,6 +142,10 @@ essentials:
 #      #Defaults to 30
 #      duration: 30
 #
+#      #This setting rotates this screen by 90 degrees, typically used when monitors are physically rotated to a vertical orientation.
+#      #If the colors appear washed out, you may need to combine this option with freeform_advanced_mpv_options: "--hwdec=no" for each stream where the colors are affected
+#      rotate90: True
+#
 #      #Documentation example SCREEN 3
 #      #This will show a 1x3 on first row + 1 stream on second row if all streams are connectable
 #      #Force this screen to be shown by pressing and holding F3 or keypad 2

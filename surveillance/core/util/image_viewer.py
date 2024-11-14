@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # Run over ssh with DISPLAY=:0 in front of command
 # For the example first cd to /home/opensurv/lib/ to make the logging setup work
-# Example: cd /home/opensurv/lib/; DISPLAY=:0 core/util/image_viewer.py 100 100 500 400 10 20 https://images.opensurv.net/demo.png "test"
+# Example: cd /home/opensurv/lib/; DISPLAY=:0 core/util/image_viewer.py 100 100 500 400 10 20 https://images.opensurv.net/demo.png "test" 1
 
 import pygame
 import time
@@ -19,12 +19,13 @@ screen_info = pygame.display.Info()
 screen_width, screen_height = screen_info.current_w, screen_info.current_h
 
 # Check for command-line arguments
-if len(sys.argv) != 9:  # Adjusted for 2 new arguments
-    print("Usage: script.py x1 y1 x2 y2 x_offset y_offset image_url_or_path window_title")
+if len(sys.argv) != 10:
+    print("Usage: script.py x1 y1 x2 y2 x_offset y_offset image_url_or_path window_title rotate90")
     print("Coordinates in omxplayer format: [x1, y1, x2, y2]")
     print("x_offset and y_offset: Offsets to adjust the window position")
     print("image_url_or_path: a URL starting with http(s):// or a local path with file://")
     print("window_title: Title for the window (visible in wmctrl -l)")
+    print("rotate90: 0 for no rotation, 1 for 90-degree rotation")
     sys.exit(1)
 
 # Parse command-line arguments
@@ -32,9 +33,10 @@ x1, y1, x2, y2 = map(int, sys.argv[1:5])
 x_offset, y_offset = map(int, sys.argv[5:7])  #Offsets for another monitor
 image_source = sys.argv[7]
 window_title = sys.argv[8]
+rotate90 = int(sys.argv[9])
 
 logger = setup_logging(f"../logs/image_viewer_{window_title}.log", __name__)
-logger.debug(f"image_viewer_{window_title} starting with arguments {x1}, {y1}, {x2}, {y2}, {x_offset}, {y_offset}, {image_source}, {window_title}")
+logger.debug(f"image_viewer_{window_title} starting with arguments {x1}, {y1}, {x2}, {y2}, {x_offset}, {y_offset}, {image_source}, {window_title}, {rotate90}")
 
 # Explanation of coordinates:
 # x1: x-coordinate of the upper-left corner of the window
@@ -77,6 +79,10 @@ def load_image():
         else:
             logger.debug(f"image_viewer_{window_title} Error: Image source must start with 'http://', 'https://', or 'file://'")
             sys.exit(1)
+
+        # Rotate the image if rotate90 is set to 1
+        if rotate90 == 1:
+            img = pygame.transform.rotate(img, -90)
 
         # Resize the image to fit the specified window dimensions
         return pygame.transform.scale(img, (window_width, window_height))
