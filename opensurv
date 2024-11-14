@@ -1,6 +1,8 @@
 #!/bin/bash
 ##This script is called by lightm to start opensurv
 export DISPLAY=:0
+#Hide mouse cursor
+/usr/bin/unclutter -idle 2 -root &
 # Start the XFCE window manager
 xfwm4 &
 #Xlib.display in surveillance.py requires DISPLAY var
