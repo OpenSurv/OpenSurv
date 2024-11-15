@@ -45,7 +45,7 @@ In short: The idea is to connect your [compatible device](#Hardware-list) to a m
   - `git clone https://github.com/OpenSurv/OpenSurv`
 - Move into the folder `cd OpenSurv`
 - OPTIONAL: checkout a specific branch, for example `git checkout v1_latest`, if you want to override the default version
-- Run `sudo ./install.sh`
+- Run `sudo ./install.sh` ( this works locally as well as over an ssh session )
 - Enjoy the demo showcase
 
 ## Configuration
