@@ -114,7 +114,10 @@ In case of dual monitors, then the screens on both monitors will be controlled a
 
 - I advise you to test your URLs in mpv (command line) first. It should work before attempting to use them in OpenSurv.
 
-- If you used the install.sh script, logs are created at /home/opensurv/logs/. You can use them for troubleshooting. Enable DEBUG logging for very detailed output of what is going on. Switch INFO to DEBUG in /etc/opensurvc/logging.yml and restart opensurv.
+- If you used the install.sh script, logs are created at /home/opensurv/logs/. You can use them for troubleshooting. Enable DEBUG logging for very detailed output of what is going on. Switch INFO to DEBUG in /etc/opensurv/logging.yml and restart opensurv.
+
+- If you want detailed logging of mpv for a particular video stream you can enable this by setting `freeform_advanced_mpv_options: "--msg-level=all=warn --log-file=/dev/shm/debug_stream.log"` for that stream and restart OpenSurv.  
+  (This was not enabled by default as mpv logging can cause large logfiles)
 
 - If you are connected via keyboard/keypad, you can stop OpenSurv by pressing and holding q (or backspace or keypad "/") (this can take some seconds).
 
