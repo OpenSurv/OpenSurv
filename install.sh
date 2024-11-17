@@ -85,7 +85,7 @@ rsync -av "$SOURCEDIR/surveillance.py" "$DESTPATH/lib/"
 rsync -av opensurv "$DESTPATH/bin/"
 rsync -av opensurv.desktop "/usr/share/xsessions/"
 
-chown -Rc opensurv.opensurv /home/opensurv
+chown -Rc opensurv:opensurv /home/opensurv
 
 #Link config file dir into /etc as convenient way to edit
 if [ ! -L /etc/opensurv ]; then
@@ -103,6 +103,7 @@ if [ ! -f /home/opensurv/firstinstall_DONE ];then
 fi
 
 if [ x"$ANSWERSTART" == x"yes" ]; then
+    systemctl daemon-reload
     systemctl restart lightdm
 fi
 
