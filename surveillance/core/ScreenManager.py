@@ -140,6 +140,8 @@ class ScreenManager:
 
         if self.max_index == 0:
             logger.debug(f"ScreenManager: {self.name}: rotate_next: only one screen configured, do not rotate")
+            #Reset active timer of active screen so the counter does not keep increasing if disable_autorotation: False ( Although for one screen no cycling to next can happen anyways)
+            self.all_screens[self.activeindex].reset_active_timer()
             return
 
         logger.debug(f"ScreenManager: {self.name}: rotate_next: indexes BEFORE rotate: futurecacheindex: {self.futurecacheindex} activeindex: {self.activeindex} max index is {self.max_index}")
