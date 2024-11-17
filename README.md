@@ -116,8 +116,8 @@ In case of dual monitors, then the screens on both monitors will be controlled a
 
 - If you used the install.sh script, logs are created at /home/opensurv/logs/. You can use them for troubleshooting. Enable DEBUG logging for very detailed output of what is going on. Switch INFO to DEBUG in /etc/opensurv/logging.yml and restart opensurv.
 
-- If you want detailed logging of mpv for a particular video stream you can enable this by setting `freeform_advanced_mpv_options: "--msg-level=all=warn --log-file=/dev/shm/debug_stream.log"` for that stream and restart OpenSurv.  
-  (This was not enabled by default as mpv logging can cause large logfiles)
+- To enable detailed logging for a specific video stream in MPV, set `freeform_advanced_mpv_options: "--msg-level=all=warn --log-file=/dev/shm/debug_stream.log` for that stream and restart OpenSurv.  
+  Alternatively, to enable debug logging for all MPV instances, edit `/home/opensurv/.config/mpv/mpv.conf` (these logs will be written to /home/opensurv/logs/main.log). 
 
 - If you are connected via keyboard/keypad, you can stop OpenSurv by pressing and holding q (or backspace or keypad "/") (this can take some seconds).
 

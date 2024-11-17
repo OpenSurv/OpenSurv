@@ -1,4 +1,6 @@
 #!/bin/bash
+# Redirect stderr (2) to the main log file
+exec 2> >(while read -r line; do echo "$(date '+%Y/%m/%d %H:%M:%S') - DAEMON: $line"; done >> /home/opensurv/logs/main.log)
 ##This script is called by lightm to start opensurv
 export DISPLAY=:0
 #Hide mouse cursor
@@ -6,4 +8,4 @@ export DISPLAY=:0
 # Start the XFCE window manager
 xfwm4 &
 #Xlib.display in surveillance.py requires DISPLAY var
-cd /home/opensurv/lib; python3 surveillance.py 2>&1
+cd /home/opensurv/lib; python3 surveillance.py
