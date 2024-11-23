@@ -48,10 +48,14 @@ class Draw:
 
 
     def blank(self):
-        logger.debug(
-            f"Draw: {self.name} draw.blank we are instructed to blank the background")
-        self.surface.fill((0, 0, 0))
-        pygame.display.flip()
+        if self.disable_pygame:
+            logger.debug(f"Draw: {self.name} Refuse to blank screen since we do not have a pygame surface to draw on" )
+            return None
+        else:
+            logger.debug(
+                f"Draw: {self.name} draw.blank we are instructed to blank the background")
+            self.surface.fill((0, 0, 0))
+            pygame.display.flip()
     def check_input(self):
         if not self.disable_pygame:
             try:

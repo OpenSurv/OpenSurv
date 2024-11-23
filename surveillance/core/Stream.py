@@ -40,6 +40,7 @@ class Stream:
         if self.imageurl and self.showontop:
             logger.error(f"Stream: {self.name} is an imageurl which does not support showontop" )
         self.mpv_extra_options = self.mpv_extra_options + ' ' + self.freeform_advanced_mpv_options
+        self.mpv_loop = ""
         self.parsed=urlparse(self.url)
         self.port = self.parsed.port
         self.scheme = self.parsed.scheme
@@ -56,6 +57,9 @@ class Stream:
             self.rtsp_options_cmd = "OPTIONS " + self._manipulate_credentials_in_url("remove")  + " RTSP/1.0\r\nCSeq: 1\r\nUser-Agent: opensurv\r\nAccept: application/sdp\r\n\r\n"
 
         self.obfuscated_credentials_url = self._manipulate_credentials_in_url("obfuscate")
+
+        if self.scheme == "file":
+            self.mpv_loop = "--loop"
 
         if self.scheme not in ["rtsp", "http", "https", "file", "rtmp"]:
             logger.error("Stream: " + self.name + " Scheme " + self.scheme + " in " + self.obfuscated_credentials_url + " is currently not supported, you can make a feature request on https://community.opensurv.net")
@@ -288,10 +292,9 @@ class Stream:
 
         else:
             self.command_line = f'/usr/bin/mpv \
-                        --msg-level=all=warn \
-                        --loop \
                         --video-aspect-override=\'{self._get_aspect_ratio_from_coordinates()}\' \
                         --title=\'{self.name}\' \
+                        { self.mpv_loop } \
                         --no-border \
                         --video-rotate=\'{self.mpv_video_rotate}\' \
                         --window-minimized=yes \

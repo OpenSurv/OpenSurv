@@ -17,6 +17,11 @@ autologin-session=opensurv
 autologin-user-timeout=0' > /etc/lightdm/lightdm.conf
 }
 
+set_default_options_mpv() {
+  #mpv logging may really fill your disk fast, as a precaution only log fatal errors by default
+  echo 'msg-level=all=fatal' > /home/opensurv/.config/mpv/mpv.conf
+}
+
 if [ "$(id -u)" -ne 0 ];then echo "ABORT, run this installer as the root user (sudo ./install.sh)"; exit 2; fi
 
 
@@ -78,6 +83,7 @@ if [ x"$OVERWRITESIMAGES" == x"yes" ]; then
 fi
 if [ x"$USEEXAMPLECONFIG" == x"yes" ]; then
     rsync -av "$SOURCEDIR/etc/" "$DESTPATH/etc/"
+    set_default_options_mpv
 fi
 rsync -av "$SOURCEDIR/demo" "$DESTPATH/lib/"
 rsync -av "$SOURCEDIR/core" "$DESTPATH/lib/"
@@ -85,7 +91,7 @@ rsync -av "$SOURCEDIR/surveillance.py" "$DESTPATH/lib/"
 rsync -av opensurv "$DESTPATH/bin/"
 rsync -av opensurv.desktop "/usr/share/xsessions/"
 
-chown -Rc opensurv.opensurv /home/opensurv
+chown -Rc opensurv:opensurv /home/opensurv
 
 #Link config file dir into /etc as convenient way to edit
 if [ ! -L /etc/opensurv ]; then
@@ -103,6 +109,6 @@ if [ ! -f /home/opensurv/firstinstall_DONE ];then
 fi
 
 if [ x"$ANSWERSTART" == x"yes" ]; then
+    systemctl daemon-reload
     systemctl restart lightdm
 fi
-

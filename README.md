@@ -45,7 +45,7 @@ In short: The idea is to connect your [compatible device](#Hardware-list) to a m
   - `git clone https://github.com/OpenSurv/OpenSurv`
 - Move into the folder `cd OpenSurv`
 - OPTIONAL: checkout a specific branch, for example `git checkout v1_latest`, if you want to override the default version
-- Run `sudo ./install.sh`
+- Run `sudo ./install.sh` ( this works locally as well as over an ssh session )
 - Enjoy the demo showcase
 
 ## Configuration
@@ -114,7 +114,10 @@ In case of dual monitors, then the screens on both monitors will be controlled a
 
 - I advise you to test your URLs in mpv (command line) first. It should work before attempting to use them in OpenSurv.
 
-- If you used the install.sh script, logs are created at /home/opensurv/logs/. You can use them for troubleshooting. Enable DEBUG logging for very detailed output of what is going on. Switch INFO to DEBUG in /etc/opensurvc/logging.yml and restart opensurv.
+- If you used the install.sh script, logs are created at /home/opensurv/logs/. You can use them for troubleshooting. Enable DEBUG logging for very detailed output of what is going on. Switch INFO to DEBUG in /etc/opensurv/logging.yml and restart opensurv.
+
+- To enable detailed logging for a specific video stream in MPV, set `freeform_advanced_mpv_options: "--msg-level=all=warn --log-file=/dev/shm/debug_stream.log` for that stream and restart OpenSurv.  
+  Alternatively, to enable debug logging for all MPV instances, edit `/home/opensurv/.config/mpv/mpv.conf` (these logs will be written to /home/opensurv/logs/main.log). 
 
 - If you are connected via keyboard/keypad, you can stop OpenSurv by pressing and holding q (or backspace or keypad "/") (this can take some seconds).
 
