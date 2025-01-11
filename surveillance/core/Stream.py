@@ -300,6 +300,7 @@ class Stream:
                         --window-minimized=yes \
                         --no-input-default-bindings \
                         --no-input-builtin-bindings \
+                        --no-osc \
                         --cursor-autohide=always \
                         --screen=\'{self.monitor_number}\' \
                         --geometry=\'{self._convert_to_mpv_coordinates()}\' \
