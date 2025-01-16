@@ -74,7 +74,7 @@ if __name__ == '__main__':
     #Setup logger
     logger = setup_logging()
 
-    fullversion_for_installer = "1.2"
+    fullversion_for_installer = "1.3"
 
     version = fullversion_for_installer
     logger.info("Starting opensurv " + version)
