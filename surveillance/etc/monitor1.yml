@@ -90,7 +90,7 @@ essentials:
 #          #Default to 3 seconds
 #          probe_timeout: 3
 #
-#          #Optional: freeform_advanced_mpv_options, most vlc options can be passed directly here.
+#          #Optional: freeform_advanced_mpv_options, most mpv options can be passed directly here.
 #          #This is for advanced usage only, not all combinations have been tested
 #          #For example
 #          freeform_advanced_mpv_options: "--rtsp-transport=tcp --profile=low-latency --untimed"
