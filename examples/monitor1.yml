@@ -5,7 +5,7 @@
 #This is an demo how to configure demo layout 1 on a monitor with resolution 1920x1080
 essentials:
   screens:
-    - camera_streams:
+    - streams:
         - url: "https://images.opensurv.net/demo.png"
           imageurl: true
           force_coordinates: [600, 0, 1920, 800]
