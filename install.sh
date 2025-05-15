@@ -5,6 +5,51 @@ if [ ! "$BASH_VERSION" ] ; then
     exit 1
 fi
 
+INTERACTIVE="yes"
+REBOOTCOMPTUER="yes"
+ANSWERSTART="yes"
+OVERWRITESIMAGES="no"
+USEEXAMPLECONFIG="no"
+
+# Get the options
+while getopts "hnr:s:o:u:" option; do
+   case $option in
+      n) # Noninteractive Install
+         INTERACTIVE="no"
+         ;;
+      r) # Reboot
+        REBOOTCOMPTUER=$OPTARG
+        ;;
+      s) # Restart opensurv
+        ANSWERSTART=$OPTARG
+        ;;
+      o) # Overwrite Images
+        OVERWRITESIMAGES=$OPTARG
+        ;;
+      u) # Use Example Config
+        USEEXAMPLECONFIG=$OPTARG
+        ;;
+      h)
+        # Display Help
+        echo "OpenSurv Installation Script Help"
+        echo
+        echo "Syntax: ./install.sh [-n] [-h] [-r arg] [-s arg] [-o arg] [-u arg]"
+        echo "options:"
+        echo "n     Non-Interactive Install"
+        echo "r     Whether to reboot compuer"
+        echo "s     Whether to start OpenSurv service"
+        echo "o     Whether to Overwrite Images"
+        echo "u     Whether to user example config"
+        echo
+        exit 1
+        ;;
+      \?) # Invalid option
+        echo "Error: Invalid option"
+        exit
+        ;;
+   esac
+done
+
 show_version() {
     grep fullversion_for_installer "$BASEPATH/surveillance/surveillance.py" | head -n 1 | cut -d"=" -f2
 }
@@ -33,8 +78,10 @@ echo
 echo -n "The following version will be installed:"
 show_version
 echo
+if [ x"$INTERACTIVE" == x"yes" ]; then
 echo "Do you want to continue press <Enter>, <Ctrl-C> to cancel"
 read
+fi
 
 #Install needed packages
 apt update
@@ -51,6 +98,7 @@ SOURCEDIR="$BASEPATH/surveillance"
 CONFDIR="etc"
 BACKUPCONFDIR=/tmp/backup_opensurv_config_$(date +%Y%m%d_%s)
 
+if [ x"$INTERACTIVE" == x"yes" ]; then
 if [ -d "$DESTPATH/${CONFDIR}" ];then
    echo
    echo "Existing config dir will be backed up to "${BACKUPCONFDIR}""
@@ -77,6 +125,7 @@ echo
 echo "Do you want me to (re-)start opensurv after install?"
 echo "Type yes/no"
 read ANSWERSTART
+fi
 
 if [ x"$OVERWRITESIMAGES" == x"yes" ]; then
   rsync -av "$SOURCEDIR/images/" "$DESTPATH/lib/images/"
@@ -102,10 +151,15 @@ if [ ! -f /home/opensurv/firstinstall_DONE ];then
   #We use lightdm, do not let gdm3 be in our way
   apt remove gdm3
   touch /home/opensurv/firstinstall_DONE
-  echo "This is first install we need to reboot"
-  echo "For reboot press <Enter>"
-  read
-  reboot
+  if [ x"$INTERACTIVE" == x"yes" ]; then
+    echo "This is first install we need to reboot"
+    echo "For reboot press <Enter>"
+    read
+    reboot
+  fi
+  elif [ x"$REBOOTCOMPUTER" == x"yes" ]; then
+    reboot
+  fi
 fi
 
 if [ x"$ANSWERSTART" == x"yes" ]; then
